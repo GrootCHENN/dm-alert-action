@@ -13,7 +13,7 @@ jobs:
 
       - name: Run a python in current branch
         uses: ./
-        with:
+        env:
           pr_number: ${{ github.event.pull_request.number }}
           repo: ${{ github.repository }}
           branch_name: ${{ github.ref_name }}
