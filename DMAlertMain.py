@@ -41,8 +41,8 @@ class DMAlert:
 
     def load_env(self):
         # env provide in github action .yml file
-        self.github_repo = os.environ.get("GITHUB_REPO")
-        self.github_pr_number = str(os.environ.get("GITHUB_PR_NUMBER"))
+        self.github_repo = os.environ.get("INPUT_REPO")
+        self.github_pr_number = str(os.environ.get("INPUT_PR_NUMBER"))
         # GITHUB_HEAD_REF is a default env when trigger is pull_request
         self.branch_name = os.environ.get("GITHUB_HEAD_REF")
         if self.branch_name is None:
