@@ -18,6 +18,12 @@ runs:
     - name: Install Dependencies
       run: pip install requests
       shell: bash
+    - name: setup env
+      run: |
+        echo "INPUT_REPO: ${{ github.event.inputs.repo }}"
+        echo "INPUT_PR_NUMBER: ${{ github.event.inputs.pr_number }}"
+        echo "INPUT_BRANCH_NAME: ${[ github.event.inputs.branch_name }}"
+      shell: bash
     - name: run python
       id: run-python
       run: python ./DMAlertMain.py
