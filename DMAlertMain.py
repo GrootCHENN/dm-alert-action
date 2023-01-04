@@ -44,7 +44,7 @@ class DMAlert:
         self.github_repo = os.environ.get("INPUT_REPO")
         self.github_pr_number = str(os.environ.get("INPUT_PR_NUMBER"))
         # GITHUB_HEAD_REF is a default env when trigger is pull_request
-        self.branch_name = os.environ.get("GITHUB_HEAD_REF")
+        self.branch_name = os.environ.get("INPUT_BRANCH_NAME")
         if self.branch_name is None:
             raise Exception("can't find BRANCH_NAME ENV in Github action.")
         if self.github_pr_number is None:
@@ -81,8 +81,8 @@ class DMAlert:
                 version = None
             package = Package(package_name= package_name,checksum=checksum,url=url,version=version,identity=identity)
             targets[package_name] = package.__dict__
-        package_dependencies = {"projectName": name, "githubRepo": os.environ.get("GITHUB_REPO"),
-                                "githubPRUrl": os.environ.get("GITHUB_URL"), "dependencies": targets}
+        package_dependencies = {"projectName": name, "githubRepo": self.github_repo,
+                                "githubPRUrl": self.github_pr_url, "dependencies": targets}
         return package_dependencies
 
     def save_in_local(self, data: dict):
