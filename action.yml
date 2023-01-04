@@ -8,6 +8,9 @@ inputs:
   pr_num:
     description: "the pr number"
     required: true
+  branch_name:
+    description: "the pr branch name"
+    required: true
 
 runs:
   using: "composite"
@@ -20,9 +23,7 @@ runs:
       run: pip install requests
 
     - name: Pass Input to ENV
-      run: |
-        echo "GITHUB_REPO=${{ inputs.repo }}"
-        echo "GITHUB_PR_NUMBER=${{ inputs.pr_num }}"
+
     - name: run python
       id: run-python
       run: python src/DMAlertMain.py
