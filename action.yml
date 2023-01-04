@@ -20,9 +20,9 @@ runs:
       shell: bash
     - name: setup env
       run: |
-        echo "INPUT_REPO: ${{ github.event.inputs.repo }}"
-        echo "INPUT_PR_NUMBER: ${{ github.event.inputs.pr_number }}"
-        echo "INPUT_BRANCH_NAME: ${{ github.event.inputs.branch_name }}"
+        echo "INPUT_REPO=${{ github.event.inputs.repo }}" >> $GITHUB_ENV
+        echo "INPUT_PR_NUMBER=${{ github.event.inputs.pr_number }}" >> $GITHUB_ENV
+        echo "INPUT_BRANCH_NAME=${{ github.event.inputs.branch_name }}" >> $GITHUB_ENV
       shell: bash
     - name: run python
       id: run-python
