@@ -5,7 +5,7 @@ inputs:
   repo:
     description: "the pr repo name"
     required: true
-  pr_num:
+  pr_number:
     description: "the pr number"
     required: true
   branch_name:
