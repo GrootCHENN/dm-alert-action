@@ -1,0 +1,28 @@
+#action.yml
+
+name: "DM Alert Action"
+inputs:
+  repo:
+    description: "the pr repo name"
+    required: true
+  pr_num:
+    description: "the pr number"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+	  - name: Install Dependencies
+      run: pip install requests
+
+    - name: Pass Input to ENV
+      run: |
+        echo "GITHUB_REPO=${{ inputs.repo }}"
+        echo "GITHUB_PR_NUMBER=${{ inputs.pr_num }}"
+    - name: run python
+      id: run-python
+      run: python src/DMAlertMain.py
