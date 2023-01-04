@@ -45,12 +45,13 @@ class DMAlert:
         self.github_pr_number = str(os.environ.get("INPUT_PR_NUMBER"))
         # GITHUB_HEAD_REF is a default env when trigger is pull_request
         self.branch_name = os.environ.get("INPUT_BRANCH_NAME")
+        if self.github_repo is None:
+            raise Exception("can't find GITHUB_REPO ENV in Github action.")
+        print(self.github_repo)
         if self.branch_name is None:
             raise Exception("can't find BRANCH_NAME ENV in Github action.")
         if self.github_pr_number is None:
             raise Exception("can't find GITHUB_PR_NUMBER ENV in Github action.")
-        if self.github_repo is None:
-            raise Exception("can't find GITHUB_REPO ENV in Github action.")
         self.github_pr_url = "https://github.com/{}/pull/{}".format(self.github_repo, self.github_pr_number)
         print(self.branch_name, self.github_pr_url)
         self.is_main_branch = self.branch_name == "main"
