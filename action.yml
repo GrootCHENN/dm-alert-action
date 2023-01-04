@@ -20,6 +20,7 @@ runs:
       shell: bash
     - name: setup env
       run: |
+        #https://shipyard.build/blog/your-first-python-github-action/
         echo "INPUT_REPO=${{ github.event.inputs.repo }}" >> $GITHUB_ENV
         echo "INPUT_PR_NUMBER=${{ github.event.inputs.pr_number }}" >> $GITHUB_ENV
         echo "INPUT_BRANCH_NAME=${{ github.event.inputs.branch_name }}" >> $GITHUB_ENV
