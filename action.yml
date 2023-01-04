@@ -20,3 +20,4 @@ runs:
     - name: run python
       id: run-python
       run: python ./DMAlertMain.py
+      shell: bash
